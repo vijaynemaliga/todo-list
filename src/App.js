@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {useState } from 'react';
+import Header from './componets/header';
+import Searchbar from './componets/searchbar';
+import Todoitems from './componets/todoitems';
+import React from 'react';
 function App() {
+    const [task,setTask]=useState([])
+     const onDelete= (value)=>{
+     setTask( task.filter((work)=> work.id!=value))
+     }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+             <Header/>
+             <Searchbar setTask={setTask} />
+             <Todoitems  task={task} onDelete={onDelete} />
     </div>
   );
 }
